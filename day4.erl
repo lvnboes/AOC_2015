@@ -2,6 +2,7 @@
 -import(file, [read_file/1]).
 -import(crypto, [hash/2]).
 -import(binary, [encode_hex/1]).
+-import(util, [timed/1]).
 -export([solve/0]).
 
 process_input() -> 
