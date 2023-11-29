@@ -6,8 +6,8 @@
 -import(util, [timed/1]).
 -export([solve/0]).
 
-process_input() ->
-    {ok, File} = file:read_file("./input/day6.txt"),
+process_input(Path) ->
+    {ok, File} = file:read_file(Path),
     [[X || X <- binary:split(Line, <<" ">>, [global]), X =/= <<"turn">>, X =/= <<"through">>] || Line <- binary:split(File, <<"\n">>, [global])].
 
 sum_values_rem_2({_Key, Value}, Sum) -> Sum + (Value rem 2).
@@ -60,7 +60,7 @@ get_final_state(Actions, ExecF, SumF) ->
     Lit.
 
 solve() -> 
-    Input = process_input(),
+    Input = process_input("./input/day6.txt"),
     util:timed(
         fun() -> 
             {

@@ -2,8 +2,8 @@
 -import(util, [timed/1]).
 -export([solve/0]).
 
-process_input(Uri) ->
-    {ok, File} = file:read_file(Uri),
+process_input(Path) ->
+    {ok, File} = file:read_file(Path),
     binary_to_list(File).
 
 count_brackets([], Open, Close, _Level, CellarEntry) -> {{part1, Open-Close}, {part2, CellarEntry}};

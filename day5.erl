@@ -4,8 +4,8 @@
 -import(util, [timed/1]).
 -export([solve/0]).
 
-process_input() ->
-    {ok, File} = file:read_file("./input/day5.txt"),
+process_input(Path) ->
+    {ok, File} = file:read_file(Path),
     [binary_to_list(Line) || Line <- binary:split(File, <<"\n">>, [global])].
 
 vowels(String) -> length([X || X <- String, length(sets:to_list(sets:from_list([X|"aeiou"]))) == 5]) >= 3.
@@ -51,7 +51,7 @@ count_polite([H|T], PreConditions, Acc) ->
     end.
     
 solve() -> 
-    Input = process_input(),
+    Input = process_input("./input/day5.txt"),
     util:timed(
         fun() ->
             {

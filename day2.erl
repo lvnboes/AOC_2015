@@ -4,8 +4,8 @@
 -import(util, [timed/1]).
 -export([solve/0]).
 
-process_import() -> 
-    {ok, File} = file:read_file("./input/day2.txt"),
+process_import(Path) -> 
+    {ok, File} = file:read_file(Path),
     Lines = binary:split(File, <<"\n">>, [global]),
     [[ binary_to_integer(Y) || Y <- binary:split(X, <<"x">>, [global])] || X <- Lines].
 
@@ -23,5 +23,5 @@ required_materials([], Paper, Ribbon) -> {{part1, Paper}, {part2, Ribbon}};
 required_materials([H|T], Paper, Ribbon) -> required_materials(T, Paper+required_paper(H), Ribbon+required_ribbon(H)).
 
 solve() ->
-    Input = process_import(),
+    Input = process_import("./input/day2.txt"),
     util:timed(fun() -> required_materials(Input, 0, 0) end).

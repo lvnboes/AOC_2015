@@ -5,8 +5,8 @@
 -import(util, [timed/1]).
 -export([solve/0]).
 
-process_input() -> 
-    {ok, File} = file:read_file("./input/day4.txt"),
+process_input(Path) -> 
+    {ok, File} = file:read_file(Path),
     File.
 
 get_hash(InStart, Int) ->
@@ -27,7 +27,7 @@ test_hashes(InStart, Int, TestFunction) ->
     end.
 
 solve() ->
-    Input = process_input(),
+    Input = process_input("./input/day4.txt"),
     util:timed(
         fun() ->
             {

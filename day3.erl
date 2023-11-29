@@ -5,8 +5,8 @@
 -import(util, [timed/1]).
 -export([solve/0]).
 
-process_import() ->
-    {ok, File} = file:read_file("./input/day3.txt"),
+process_import(Path) ->
+    {ok, File} = file:read_file(Path),
     binary_to_list(File).
 
 move({X, Y}, $>) -> {X+1, Y};
@@ -23,7 +23,7 @@ positions_2([S,R|T], Santa, RoboSanta) -> positions_2(T, Santa++[move(lists:last
 unique_positions(Positions) -> length(sets:to_list(sets:from_list(Positions))).
 
 solve() -> 
-    Input = process_import(),
+    Input = process_import("./input/day3.txt"),
     util:timed(
         fun() ->
             {
