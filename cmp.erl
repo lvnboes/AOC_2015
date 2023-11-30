@@ -9,13 +9,17 @@ find_erl_files() ->
 
 check_erl(File_name) -> lists:sublist(lists:reverse(File_name), 4) == "lre.".
 
-compile_modules([]) -> ok;
-compile_modules([FileName|FileNames]) -> 
+compile_modules(Files) -> compile_modules(Files, []).
+compile_modules([], Compiled) -> {ok,lists:sort(Compiled)};
+compile_modules([FileName|FileNames], Compiled) -> 
     if
-        FileName == "cmp.erl" -> ignore;
-        true -> compile:file(FileName)
-    end,
-    compile_modules(FileNames).
+        FileName == "cmp.erl" -> 
+            compile_modules(FileNames, Compiled);
+        true -> 
+            compile:file(FileName),
+            CurrentCompiled = [list_to_atom(lists:sublist(FileName, length(FileName)-4))|Compiled],
+            compile_modules(FileNames, CurrentCompiled)
+    end.
 
 c() -> 
     Files = find_erl_files(),
