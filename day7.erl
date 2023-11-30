@@ -3,11 +3,17 @@
 -import(binary, [split/3]).
 -import(lists, [flatten/1, seq/2, nth/2, sublist/2, sublist/3]).
 -import(string, [pad/4]).
--export([solve/0]).
+-export([solve/0, test_signal/1]).
 
 process_input(Path) ->
     {ok, File} = read_file(Path),
     [split(Line, <<" ">>, [global]) || Line <- split(File, <<"\n">>, [global])].
+
+test_signal(Sig) ->
+    try binary_to_integer(Sig) of 
+        _ -> true
+    catch error:_Error -> false
+    end.
 
 swap_bits($1) -> $0;
 swap_bits($0) -> $1.
