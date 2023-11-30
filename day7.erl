@@ -96,7 +96,7 @@ execute_instructions([I1|Instructions], Map, Ignore) ->
             end
     end.
 
-get_final_state(Instructions) ->
+get_final_a(Instructions) ->
     Map1 = maps:new(),
     Result1 = execute_instructions(Instructions, Map1, <<"ignore">>),
     Map2 = #{<<"b">> => signal_to_bin_string(956)},
@@ -106,5 +106,5 @@ get_final_state(Instructions) ->
 solve() -> 
     Input = process_input("./input/day7.txt"),
     timed(
-        fun() -> get_final_state(Input) end
+        fun() -> get_final_a(Input) end
     ).
