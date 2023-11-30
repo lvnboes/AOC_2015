@@ -98,10 +98,10 @@ execute_instructions([I1|Instructions], Map, Ignore) ->
 
 get_a(Instructions) ->
     Map1 = maps:new(),
-    Result1 = execute_instructions(Instructions, Map1, <<"ignore">>),
+    A1 = execute_instructions(Instructions, Map1, <<"ignore">>),
     Map2 = #{<<"b">> => signal_to_bin_string(956)},
-    Result2 = execute_instructions(Instructions, Map2, <<"b">>),
-    {{part1,bin_string_to_signal(Result1)},{part2,bin_string_to_signal(Result2)}}.
+    A2 = execute_instructions(Instructions, Map2, <<"b">>),
+    {{part1,bin_string_to_signal(A1)},{part2,bin_string_to_signal(A2)}}.
 
 solve() -> 
     Input = process_input("./input/day7.txt"),
