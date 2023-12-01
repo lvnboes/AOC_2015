@@ -15,7 +15,6 @@ count_chars([$\\, B | T], Acc1, Acc2, Acc3) when (B == $\") or (B == $\\) -> cou
 count_chars([$\\, $x, _C, _D | T], Acc1, Acc2, Acc3) -> count_chars(T, Acc1 + 4, Acc2 + 1, Acc3 + +5);
 count_chars([_H|T], Acc1, Acc2, Acc3) -> count_chars(T, Acc1 + 1, Acc2 + 1, Acc3 + 1).
 
-
 solve() ->
     Input = process_input("./input/day8.txt"),
     timed(fun() -> count_chars(Input) end).
