@@ -17,8 +17,8 @@ test_signal(Sig) ->
     catch error:_Error -> false
     end.
 
-swap_bits($1) -> $0;
-swap_bits($0) -> $1.
+swap_bit($1) -> $0;
+swap_bit($0) -> $1.
 
 bit_and(B1, B2) when (B1 == $1) and (B2 == $1) -> $1;
 bit_and(_B1, _B2) -> $0.
@@ -26,7 +26,7 @@ bit_and(_B1, _B2) -> $0.
 bit_or(B1, B2) when (B1 == $0) and (B2 == $0) -> $0;
 bit_or(_B1, _B2) -> $1.
 
-my_bnot(BinStr) -> [swap_bits(Bit) || Bit <- BinStr].
+my_bnot(BinStr) -> [swap_bit(Bit) || Bit <- BinStr].
 
 my_band(BinStr1, BinStr2) -> [bit_and(nth(X, BinStr1), nth(X, BinStr2)) || X <- seq(1, 16)].
 
